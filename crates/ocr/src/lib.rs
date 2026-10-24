@@ -23,8 +23,14 @@ pub const RECOGNITION_MODEL: &str = "text-recognition.rten";
 /// `€`, which made a scanned "€250" read as "E250".
 pub const ALPHABET: &str = " 0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~€ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-/// The languages the models read (ISO 639-1); all use the Latin alphabet without accents.
-pub const LANGUAGES: &[(&str, &str)] = &[("en", "English")];
+/// Languages offered in Scan & OCR (ISO 639-1). The bundled model still reads the Latin
+/// alphabet without accents for every code; `tr` is listed so the Windows app can open on Turkish.
+pub const LANGUAGES: &[(&str, &str)] = &[("en", "English"), ("tr", "Turkish")];
+
+/// The Recognize Text language when the user has not chosen one. Windows opens on Turkish.
+pub fn default_language() -> &'static str {
+    if cfg!(windows) { "tr" } else { "en" }
+}
 
 #[derive(Debug, thiserror::Error)]
 pub enum OcrError {
@@ -349,6 +355,13 @@ mod tests {
             assert_eq!(models.detection.canonicalize().unwrap(), models_dir.join(DETECTION_MODEL).canonicalize().unwrap(), "{name}");
         }
         let _ = std::fs::remove_dir_all(&base);
+    }
+
+    #[test]
+    fn turkish_is_offered_and_windows_defaults_to_it() {
+        assert_eq!(LANGUAGES.iter().find(|l| l.0 == "tr").map(|l| l.1), Some("Turkish"));
+        let expected = if cfg!(windows) { "tr" } else { "en" };
+        assert_eq!(default_language(), expected);
     }
 
     /// The message tells end users what to do; release builds have no cargo.
