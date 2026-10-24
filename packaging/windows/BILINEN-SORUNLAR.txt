@@ -1,0 +1,44 @@
+PdfCraft 0.13.0 Windows deneme paketi
+Kaynak: github.com/okarayagmurl/pdfcraft
+Taban: storytold/pdfcraft, 24 Ekim 2026 sabahı (86730ed) + Türkçe varsayılan (404bf50)
+
+Bu paket bir değerlendirme kopyasıdır. Pencere ikonu PdfCraft ikonudur.
+Ana sayfa ve Hakkında hâlâ ArtCraft logosunu gösterir. Bunu SecuriPDF
+adıyla veya ArtCraft ürünü gibi vermeyin. Geniş dağıtımdan önce o logolar
+çıkarılır; kaynak cümlesi düz metin olarak kalır.
+
+Ne bu pakette var
+- Arayüz ilk açılışta Türkçe. Kayıtlı bir dil ayarı varsa o ayar kazanır.
+- Tara ve OCR, Metni tanı penceresi belge dilini Türkçe açar.
+- Görüntüleme, arama, sayfa düzeni, birleştirme, bölme, çoğu yorum,
+  form doldurma, parola, yazdırma, temel dijital imza.
+- Word, RTF, HTML ve metin dışa aktarma var; düzen kaybı olabilir.
+- PowerPoint dışa aktarma kısmi.
+
+Bilinen sınırlar
+1. Excel (.xlsx) yok. M10 bunu bitmiş bir sürüm olarak çıkarmadı.
+   Menüde "Spreadsheet (.xlsx)" M10 için planlıdır. Kodda dışa aktarma
+   komutu yoktur.
+2. Office belgesinden PDF üretme bu uygulamada yoktur.
+3. Türkçe OCR ayarı tanıma motorunu Türkçe yapmaz. Model aksansız Latin
+   okur. ç, ğ, ı, ö, ş, ü güvenilir değildir.
+4. Türkçe arayüz kataloğu eksiktir. Bazı dizgiler ve motor hataları
+   İngilizce kalır.
+5. Var olan metni yerinde düzenlemek gerçek dosyalarda kırılgandır.
+6. PDF/A dönüşümü kısmi. PDF/X ve PDF/UA yoktur.
+7. Akıllı kart (PKCS#11), zaman damgası sunucusu ve çevrimiçi imza
+   doğrulama yoktur.
+8. Ürün alfa. Bozuk dosyalarda çökme veya takılma görülebilir.
+9. Bu paket kod imzalı değildir. Windows SmartScreen uyarı verebilir.
+10. Ayarlar portable.txt yüzünden PdfCraftData klasöründe durur.
+    Klasörün tamamını birlikte kopyalayın.
+
+Sonraki güncellemeler
+- Kendi farkımız küçük kalsın: varsayılan dil ve OCR dili.
+- Excel'i burada yazmayın. Upstream create.export-xlsx "planned"
+  durumundan çıkınca main birleştirilir ve paket yeniden alınır.
+- Haftada bir storytold/pdfcraft main alınır, bu dala merge edilir,
+  aynı taşınabilir zip yeniden üretilir. Paketin içine o günkü
+  upstream commit yazılır.
+- SecuriPDF'de duran Türkçe Tesseract OCR, e-imza, UDF ve e-Fatura
+  bu forkta yeniden kurulmaz.
